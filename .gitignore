@@ -1,0 +1,70 @@
+# Large binary artifacts - rebuilt by fetch-tools.sh / install-tools.sh
+apps/opencode/
+apps/vscode/
+apps/jdk/
+apps/android-sdk/
+apps/git/
+apps/node/
+apps/go/
+apps/maven/
+apps/gradle/
+apps/python/
+apps/dotnet/
+apps/rust/
+
+# Downloaded installers
+downloads/*.tar.gz
+downloads/*.tar.xz
+downloads/*.zip
+downloads/*.deb
+downloads/*.rpm
+downloads/rustup-init
+downloads/_unpack/
+downloads/_update_stage/
+
+# Build intermediates
+build/
+
+# User data (empty dirs kept, content ignored)
+data/opencode-data/opencode/*
+!data/opencode-data/opencode/.gitkeep
+data/opencode-config/opencode/*
+!data/opencode-config/opencode/.gitkeep
+!data/opencode-config/opencode/opencode.jsonc
+!data/opencode-config/opencode/auth.json
+!data/opencode-config/opencode/service.json
+data/opencode-cache/*
+!data/opencode-cache/.gitkeep
+data/opencode-state/*
+!data/opencode-state/.gitkeep
+data/home/*
+!data/home/.gitkeep
+data/gopath/*
+!data/gopath/.gitkeep
+data/gocache/*
+!data/gocache/.gitkeep
+data/gradle/*
+!data/gradle/.gitkeep
+data/npm-cache/*
+!data/npm-cache/.gitkeep
+data/pip-cache/*
+!data/pip-cache/.gitkeep
+data/cargo/*
+!data/cargo/.gitkeep
+data/rustup/*
+!data/rustup/.gitkeep
+data/tmp/*
+!data/tmp/.gitkeep
+data/vscode-user/*
+!data/vscode-user/.gitkeep
+data/vscode-extensions/*
+!data/vscode-extensions/.gitkeep
+data/backups/*
+!data/backups/.gitkeep
+
+# Projects folder - user content
+projects/**
+!projects/.gitkeep
+
+# OS artifacts
+.DS_Store
