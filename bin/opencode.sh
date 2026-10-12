@@ -8,14 +8,18 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${SCRIPT_DIR}/env.sh"
 
+if [[ -z "${PORTABLE_ROOT}" ]]; then
+  echo "ERROR: env.sh failed to load - cannot resolve the portable root." >&2
+  exit 1
+fi
+
 echo "Starting OpenCode Portable..."
 echo "Root: ${PORTABLE_ROOT}"
 
-# Check if OpenCode exists
 OPENCODE_EXE="${PORTABLE_ROOT}/apps/opencode/opencode"
 if [[ ! -f "${OPENCODE_EXE}" ]]; then
-  echo "ERROR: OpenCode not found at ${OPENCODE_EXE}"
-  echo "Run the build scripts first: ./build/fetch-tools.sh && ./build/install-tools.sh"
+  echo "ERROR: OpenCode not found at ${OPENCODE_EXE}" >&2
+  echo "Install the app first:  ./bin/update-opencode.sh" >&2
   exit 1
 fi
 
