@@ -6,6 +6,11 @@ Complete portable development environment for Linux. Run from USB without instal
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
 ![Size](https://img.shields.io/badge/portable%20size-~6.8%20GB-orange)
 
+> ### Also available for Windows
+> This is the **Linux** edition. For the Windows version, with the same
+> toolchain and the same portable design, see:
+> **[opencode_portable](https://github.com/palashsuryavanshi/opencode_portable)**
+
 ## What's Included
 
 | Tool | Version | Purpose |
@@ -27,7 +32,7 @@ Complete portable development environment for Linux. Run from USB without instal
 
 1. **Clone** this repository to your USB drive:
    ```bash
-   git clone https://github.com/yourusername/opencode-portable-linux.git /media/usb/opencode-portable
+   git clone https://github.com/palashsuryavanshi/opencode-portable-linux.git /media/usb/opencode-portable
    cd /media/usb/opencode-portable
    ```
 
@@ -164,6 +169,18 @@ sudo dnf install -y gcc gcc-c++ make openssl-devel zlib-devel ncurses-devel sqli
 ```bash
 sudo pacman -S --needed base-devel openssl zlib ncurses sqlite readline libffi wget curl unzip jq
 ```
+
+## Platforms
+
+| Edition | Repository | Launcher |
+|---|---|---|
+| **Linux (x64)** | [`opencode-portable-linux`](https://github.com/palashsuryavanshi/opencode-portable-linux) — *this repo* | `./launch.sh` |
+| **Windows 10/11 (x64)** | [`opencode_portable`](https://github.com/palashsuryavanshi/opencode_portable) | `Launch.cmd` |
+
+Both editions ship the same toolchains, the same session layout, and the same
+`data/`-on-the-stick isolation model. Session databases are not shared between
+platforms, but the launchers and directory structure are identical, so moving
+a workflow between the two is straightforward.
 
 ## License
 
