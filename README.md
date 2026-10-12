@@ -51,18 +51,61 @@ Complete portable development environment for Linux. Run from USB without instal
    - **7** — Verify portable setup
    - **8** — Update OpenCode
 
-## First Run — Install Tools
+## First Run — Install the Tools You Want
 
-The repository contains launchers and build scripts. Tools are downloaded and built on first use:
+The full bundle is about **5 GB installed**. You almost certainly do not need all
+of it, so the installer lets you pick. Run this from the portable root:
 
 ```bash
-# From the portable root directory:
-./build/fetch-tools.sh      # Download tool sources (~2 GB)
-./build/install-tools.sh    # Build and install to apps/ (takes 10-30 min)
-./build/setup-android.sh    # Install Android SDK packages
+chmod +x build/install-selected-tools.sh
+./build/install-selected-tools.sh
 ```
 
-This downloads ~2 GB and builds/installs to `apps/`. Only needed once per USB.
+You get a toggle list with the size of each toolchain and a running total:
+
+```
+  #   Tool                          Size
+  1   OpenCode GUI + CLI            740 MB  The AI coding assistant (required)
+  2   VS Code (portable)            400 MB  Portable tarball, data on the stick
+  3   Temurin JDK 21 LTS            330 MB  Java, needed for Android and Gradle
+  4   Android SDK                   655 MB  cmdline-tools, platform-tools, build-tools 34/35
+  ...
+```
+
+Enter numbers to toggle, `a` for all, `n` for none. Before downloading it checks
+free space with `df`, then fetches the selected items in parallel and verifies
+each one afterwards. Already-installed tools are skipped.
+
+### Non-interactive
+
+```bash
+./build/install-selected-tools.sh --minimal              # OpenCode only (~740 MB)
+./build/install-selected-tools.sh --only jdk,node,go     # pick specific toolchains
+./build/install-selected-tools.sh --all                   # everything
+./build/install-selected-tools.sh --list                  # show the catalogue, install nothing
+./build/install-selected-tools.sh --only jdk --force      # reinstall even if present
+./build/install-selected-tools.sh --only android --no-android
+```
+
+OpenCode itself is always included. Choosing Android automatically pulls in the
+JDK, because the SDK manager will not run without it.
+
+### Slow tools are labelled
+
+`git` and `python` have no official portable Linux build, so they are compiled
+from source and are marked as such in the catalogue. Expect 5-15 minutes for Git
+and 10-30 minutes for CPython. If you only need version control, the system Git
+that ships with most distros is usually good enough — skip it.
+
+### Installing everything the old way
+
+The original three-stage scripts still work if you prefer them:
+
+```bash
+./build/fetch-tools.sh
+./build/install-tools.sh
+./build/setup-android.sh
+```
 
 ## Features
 
@@ -126,6 +169,7 @@ opencode-portable-linux/
 │   └── backups/            # Session snapshots
 ├── projects/               # Your code goes here
 ├── build/                  # Build scripts
+│   ├── install-selected-tools.sh # pick which toolchains to install (start here)
 │   ├── fetch-tools.sh      # Download tool sources
 │   ├── install-tools.sh    # Build and install to apps/
 │   └── setup-android.sh    # Install Android SDK packages
