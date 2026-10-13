@@ -268,6 +268,9 @@ the selection, or use a larger stick.
 - A USB drive — budget 1 GB for OpenCode alone, 5 GB for everything
 - Internet access on first run, for downloads
 
+Unlike the Windows edition, there is no bundled 7-Zip here: the Linux scripts use
+	ar and unzip, which every distribution already provides.
+
 ---
 
 ## Platforms
